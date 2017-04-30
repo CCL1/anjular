@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp" ng-cloak>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>学生成绩单</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+</head>
+<body>
+<div ng-controller="myController">
+    <div class="btns">
+        <button type="button" class="btn" ng-click="showDialog()">添加记录</button>
+        <button type="button" class="btn" ng-click="delAll()" ng-disabled="!selected.length">批量删除</button>
+        分数区间：<select ng-model="grade" ng-change="selectGrade()">
+        <option ng-repeat="option in gradeArr">{{option}}</option>
+    </select>
+        <input type="text" class="search-input" ng-model="searchValue" placeholder="请输入学号或姓名进行查询">
+        <button type="button" ng-click="search()">搜索</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th><input type="checkbox" ng-checked="selectAll" ng-model="selectAll" ng-change="selAll()"></th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th class="order" ng-click="desc=!desc">分数<i class="" change-class=""></i></th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="student in students | filter:searchValue | orderBy:'+':desc">
+            <td><input type="checkbox" ng-checked="" ng-model="selSingle" class="sels"
+                       ng-change="selSomeRecord(student.id, selSingle)"></td>
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.sexy}}</td>
+            <td>{{student.score}}</td>
+            <td>
+                <button type="button" ng-click="editRecord($index)">编辑</button>
+                <button type="button" ng-click="delRecord($index)">删除</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <div id="addStudent" class="dialog" ng-init="dialogShow = false" ng-show="dialogShow">
+        <form name="addStudentForm" novalidate>
+            <div><label>学号</label><input type="number" ng-model="no" readonly>
+            </div>
+            <div><label>姓名</label><input type="text" name="name" placeholder="必填项，请输入2-5个汉字" ng-model="name"
+                                         ng-minlength="2" ng-maxlength="5" ng-pattern="/[\u4e00-\u9fa5]{2,5}/" required>
+                <span ng-messages="addStudentForm.name.$error">
+                <span class="err" ng-message="minlength">请输入2-5个汉字</span>
+                <span class="err" ng-message="maxlength">请输入2-5个汉字</span>
+                <span class="err" ng-message="required">必填项，请输入2-5个汉字</span>
+                <span class="err" ng-message="pattern">请输入2-5个汉字</span>
+                    </span>
+            </div>
+            <!--<div><label>性别</label><input type="text" ng-model="sexy"></div>-->
+            <div><label>性别</label><input type="radio" name="sexy" value="男" ng-model="sexy">男<input type="radio"
+                                                                                                    name="sexy"
+                                                                                                    value="女"
+                                                                                                    ng-model="sexy">女
+            </div>
+            <div><label>分数</label><input type="text" name="score" placeholder="必填项，请输入大于0的数字" ng-model="score"
+                                         ng-pattern="/^[0-9]*$/" required>
+                <span ng-messages="addStudentForm.score.$error">
+                <span class="err" ng-message="required">必填项</span>
+                <span class="err" ng-message="pattern">请输入数字</span>
+                </span>
+            </div>
+            <button ng-click="addRecord()" ng-disabled="addStudentForm.score.$invalid" ng-init="addBtnShow = false"
+                    ng-show="addBtnShow">保存
+            </button>
+            <button ng-click="saveEditRecord(index)" ng-init="editBtnShow = false" ng-show="editBtnShow">保存</button>
+            <button ng-click="hideDialog()">取消</button>
+        </form>
+    </div>
+</div>
+<script src="js/angular-1.6.2.js"></script>
+<script src="node_modules/ngstorage/ngStorage.min.js"></script>
+<script src="js/angular-messages.js"></script>
+<script src="app1.js"></script>
+</body>
+</html>

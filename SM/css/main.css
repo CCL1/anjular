@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+[ng-cloak]{
+    display: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    font-family: microsoft yahei, Arial;
+    line-height: 2.0em;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.btns {
+    width: 80%;
+    margin: 20px auto 0;
+}
+
+.btns .btn {
+    border: 1px solid #019DFF;
+    border-radius: 3px;
+    padding: 6px 10px;
+    background: #0af;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btns .btn:hover {
+    background: #138fff;
+}
+
+.btns .btn:disabled {
+    background: #aaa;
+    color: #f0f0f0;
+    border: 1px solid #cecece;
+    cursor: not-allowed;
+}
+
+input {
+    padding: 2px 12px;
+    border: 1px solid rgb(151, 151, 151);
+}
+
+input:read-only {
+    background: #ececec;
+}
+
+.search-input {
+    margin-left: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid #cecece;
+    border-collapse: collapse;
+    font-size: 1.2em;
+}
+
+th {
+    padding: 5px 12px;
+    border: 1px solid #cecece;
+    background-color: #ececec;
+    font-size: 1.1em;
+}
+
+th.order {
+    position: relative;
+    cursor: pointer;
+}
+
+th.order i {
+    position: absolute;
+    right: 4px;
+}
+
+th.order i:before {
+    content: '';
+    display: block;
+    border-width: 6px;
+    border-color: transparent transparent #999;
+    border-style: dashed dashed solid;
+    margin-bottom: 1px;
+}
+
+th.order i:after {
+    content: '';
+    display: block;
+    border-width: 6px;
+    border-color: #999 transparent transparent;
+    border-style: solid dashed dashed;
+    margin-top: 1px;
+}
+
+th.order .asc:before {
+    border-bottom-color: #666;
+}
+
+th.order .desc:after {
+    border-top-color: #666;
+}
+
+td {
+    padding: 4px 12px;
+    border: 1px solid #cecece;
+}
+
+.dialog {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.dialog div {
+    margin: 10px 0;
+}
+
+.dialog label {
+    margin-right: 4px;
+}
+
+.dialog input {
+    padding: 6px 12px;
+}
+
+.dialog button {
+    margin-left: 28px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.tips {
+    color: #999;
+}
+
+.err {
+    color: red;
+}
